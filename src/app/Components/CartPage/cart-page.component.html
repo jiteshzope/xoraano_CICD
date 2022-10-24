@@ -1,0 +1,78 @@
+<h1 class="text-center pt-2">My Cart</h1>
+<button class="btn btn-dark my-2" routerLink="/home"><fa-icon [icon]="faArrowCircleLeft"></fa-icon> Go back </button>
+<div *ngIf="cartItemsCount > 0; else noItemsTemplate">
+
+    <div class="row mb-2 py-2">
+        <div class="col-md-6">
+            <p> You have {{ cartItemsCount }} items in your shopping cart.</p> 
+        </div>
+        <div class="col-md-6 text-right">
+            <button (click)="clearCart()" class="btn btn-dark btn-sm">Clear Cart</button>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th class="text-center myTh">Name</th>
+                <th class="text-center myTh" >Quantity</th>
+                <th class="text-center myTh">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of cartItems">
+                <td>
+                    <img [src]="item.getImage()" class="border rounded-circle" style="max-width: 130px" alt="image">
+                </td>
+                <td class="text-center">
+                    {{ item.getProductName() }}
+                </td>
+                <td class="text-center">
+
+                    <div class="row no-gutters myclass1">
+                        <div class="col-4">
+                          <button 
+                            (click)="decrement(item)"
+                            class="btn btn-dark btn-block">-</button> 
+                        </div>
+                        <div class="col text-center Itemqty">
+                          {{ item.getQuantity() }}
+                        </div>
+                        <div class="col-4">
+                          <button
+                            (click)="increment(item)"
+                            class="btn btn-dark btn-block incrementBtn">+</button> 
+                        </div>
+                    </div>
+
+                </td>
+                <td class="text-center">
+                    {{ item.getAmount() | currency:'INR':true }}
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th class="text-center">{{ getTotalAmount() | currency:'INR':true }}</th>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="d-flex justify-content-end w-100 mb-2 ">
+        <p><a routerLink="/checkout" class="btn btn-dark">Check Out <fa-icon [icon]="faArrowCircleRight"></fa-icon></a></p>
+    </div>
+    
+
+</div>
+
+<ng-template #noItemsTemplate>
+
+    <p class="text-center display-3">
+        Your cart is Empty !!
+    </p>
+
+</ng-template>

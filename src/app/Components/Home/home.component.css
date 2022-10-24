@@ -1,0 +1,56 @@
+.my-list{
+    overflow-x: auto;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+    margin: 0  -5px;
+}
+
+.my-list>.list-group-item {
+    margin: 0 -10px;
+    border: none;
+}
+
+.mainsection, .noItems{
+    margin-top: 130px;
+}
+
+.mycategoryitems{
+    cursor : pointer
+}
+
+.mycategoryitems:hover{
+    color: orange;
+}
+
+@media only screen and (max-width : 767px){
+
+    .mainsection , .noItems{
+        margin-top: 200px;
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+
+    .display-4{
+        font-size: large;
+        font-weight: bold;
+    }
+
+    .my-list>.list-group-item {
+        border: none;
+    }
+
+    .mainsection , .noItems{
+        margin-top: 20px;
+    }
+
+    .fixed-top{
+        position :static;
+    }
+
+}
+
+
+

@@ -1,0 +1,22 @@
+.myclass1 .btn{
+    height : 1.5rem;
+    padding: 0rem;
+
+}
+
+.myTh{
+    max-width: 200px;
+}
+
+@media only screen and (max-width: 600px) {
+
+    img{
+        display: none;
+    }
+
+    .display-3{
+        margin-top: 2rem;
+        font-size: xx-large;
+    }
+
+}

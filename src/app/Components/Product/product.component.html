@@ -1,0 +1,38 @@
+<div class="card">
+
+    <img class="card-img-top img-fluid border rounded-circle" [src]="product.getImages()[0]" alt="">
+
+    <div class="card-body px-1 py-1">
+
+        <p class="card-text my-0" *ngFor="let split of getSplits(product.getProductName())"><small>{{ split }}</small></p>
+
+        <p class="card-text mt-2 pclass">{{getAmount() | currency:'INR':true}}</p>
+    
+        <p class="card-text pclass"
+        [ngClass]="{'text-success': product.getIsAvailable()==='yes', 'text-danger':product.getIsAvailable()==='no'}">
+        {{product.getIsAvailable()==='yes' ? 'Available' : 'Not available' }}</p>
+
+        <div class="row no-gutters myclass1">
+            <div class="col-4">
+              <button 
+                (click)="decrementQty()"
+                class="btn btn-warning btn-block text-white mybtn">-</button> 
+            </div>
+            <div class="col text-center">
+              {{ cartItem.getQuantity() }}
+            </div>
+            <div class="col-4">
+              <button 
+                (click)="incrementQty()"
+                class="btn btn-warning btn-block text-white mybtn">+</button> 
+            </div>
+        </div>
+
+        <button 
+              (click)="addToCart()"
+              class="btn btn-warning btn-sm py-0 btn-block mt-3 text-white">Add to cart</button>
+
+    </div>
+    
+
+</div>

@@ -1,0 +1,23 @@
+<div>
+    <div class="d-flex justify-content-around">
+        <h4>{{ order.time }}</h4>
+        <p>{{ order.day_and_date }}</p>
+    </div>
+
+    <div class="d-flex justify-content-around">
+        <p>{{order.orderId}}</p>
+        <p></p>
+    </div>
+
+    <div class="d-flex justify-content-around">
+        <p>Rs {{order.grandTotal}}</p>
+        <p>{{order.payment_method}}</p>
+    </div>
+
+    <div class="d-flex justify-content-around">
+        <p>{{order.noOfOrderItems}} Items</p>
+        <p>{{order.status}}</p>
+    </div>
+
+</div>
+

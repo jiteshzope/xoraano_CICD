@@ -1,0 +1,58 @@
+<app-navbar class="fixed-top"></app-navbar>
+<hr>
+
+<div class="row mainsection" *ngIf="(categoriesLoaded && categories.length > 0) || (!categoriesLoaded); else noItemsTemplate">
+
+    <div class="col col-md-3">
+
+        <ul class="list-group mb-5">
+
+            <li class="list-group-item d-flex justify-content-between align-items-center mycategoryitems" (click)="onClickScroll(getCategoryId(category))"
+                *ngFor="let category of categories"> {{category.getName()}}
+                <span class="badge badge-warning text-white">{{getProductsCountForCategoryId(getCategoryId(category))}}</span>
+            </li>
+
+        </ul>
+
+    </div>
+
+    <div class="col col-md-9 myproducts">
+
+        <ul class="list-group mb-5">
+
+            <li class="list-group-item" *ngFor="let category of categories" [id]="getCategoryId(category)">
+
+                <h4> {{category.getName()}} <span class="badge badge-warning text-white">{{getProductsCountForCategoryId(getCategoryId(category))}}</span></h4> 
+
+                <ul class="my-list list-group mb-5">
+
+                    <li class="list-group-item" *ngFor="let product of getProductsForCategoryId(getCategoryId(category))">
+
+                        <app-product [item]=product></app-product>
+
+                    </li>
+                    
+                </ul>
+                
+                
+            </li>
+
+        </ul>
+
+    </div>
+
+</div>
+
+<div *ngIf="isLoading" class="container myspinner">
+        
+    <app-loading-spinner></app-loading-spinner>
+
+</div>
+
+<ng-template #noItemsTemplate>
+
+    <p class="text-center display-4 noItems">
+        Currently not available in your city !
+    </p>
+
+</ng-template>

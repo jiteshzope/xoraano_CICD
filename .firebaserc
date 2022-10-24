@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "xoraano-cloud-kitchen": {
+      "hosting": {
+        "xoraano-website": [
+          "xoraano-cloud-kitchen"
+        ]
+      }
+    }
+  }
+}

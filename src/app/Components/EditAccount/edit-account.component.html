@@ -1,0 +1,104 @@
+<div class="container mb-5 my-5">
+
+    <button class="btn btn-dark my-2" routerLink="/home">
+        <fa-icon [icon]="faArrowCircleLeft"></fa-icon> Go back
+    </button>
+
+    <p class="display-4 pt-4">Edit account here : </p>
+
+    <form #f="ngForm" (ngSubmit)="sendLoginCode()" [ngClass]="{'d-none' : isFormdisabled || isLoading}">
+
+        <div class="form-group">
+            <label for="userName">Enter your full name:</label>
+            <input type="text" id="userName" class="form-control" #userName="ngModel" ngModel name="userName" required
+                minlength="6" />
+
+            <div class="alert alert-danger" *ngIf="userName.touched && userName.invalid">
+                <div *ngIf="getIfErrorExists(userName.errors,'required')">User name is required.</div>
+                <div *ngIf="getIfErrorExists(userName.errors,'minlength')">user name should be minimum 6 characters.
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+            <label for="userPhone">Enter your phone number:</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">+91</span>
+                </div>
+                <input type="text" id="userPhone" class="form-control" #userPhone="ngModel" ngModel name="userPhone"
+                    required minlength="10" maxlength="10" />
+            </div>
+
+            <div class="alert alert-danger" *ngIf="userPhone.touched && userPhone.invalid">
+                <div *ngIf="getIfErrorExists(userPhone.errors,'required')">Phone number is required.</div>
+                <div *ngIf="getIfErrorExists(userPhone.errors,'minlength_maxlength')">Phone number should be 10 digits.
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="userPassword">Enter password:</label>
+            <input type="text" id="userPassword" class="form-control" #userPassword="ngModel" ngModel
+                name="userPassword" required minlength="8" />
+
+            <div class="alert alert-danger" *ngIf="userPassword.touched && userPassword.invalid">
+                <div *ngIf="getIfErrorExists(userPassword.errors,'required')">password is required.</div>
+                <div *ngIf="getIfErrorExists(userPassword.errors,'minlength')">password should be minimum 8 characters.
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="userPincode">Enter your Pincode:</label>
+            <input type="text" id="userPincode" class="form-control" #userPincode="ngModel" ngModel name="userPincode"
+                required minlength="6" maxlength="6" />
+
+            <div class="alert alert-danger" *ngIf="userPincode.touched && userPincode.invalid">
+                <div *ngIf="getIfErrorExists(userPincode.errors,'required')">Pincode is required.</div>
+                <div *ngIf="getIfErrorExists(userPincode.errors,'minlength_maxlength')">Pincode should be 6 digits.
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="userAddress">Enter full address</label>
+            <textarea type="text" id="userAddress" class="form-control" #userAddress="ngModel" ngModel
+                name="userAddress" required minlength="10"></textarea>
+
+            <div class="alert alert-danger" *ngIf="userAddress.touched && userAddress.invalid">
+                <div *ngIf="getIfErrorExists(userAddress.errors,'required')">Address is required.</div>
+                <div *ngIf="getIfErrorExists(userAddress.errors,'minlength')">Address should be minimum 10 characters.
+                </div>
+            </div>
+
+        </div>
+
+        <div id="recaptcha-container"></div>
+
+        <button class="btn btn-dark btn-block my-5" type="submit" [disabled]="!f.valid">Save</button>
+
+        <br><br>
+
+    </form>
+
+</div>
+
+<div *ngIf="isLoading" class="container myspinner">
+
+    <app-loading-spinner></app-loading-spinner>
+
+</div>
+
+<div *ngIf="windowRef.confirmationResult">
+
+    <label for="code">Enter your Verification Code Here</label><br>
+    <input class="mb-3" type="text" name="code" [(ngModel)]="verificationCode">
+
+    <button (click)="verifyCode()">Verify</button>
+</div>

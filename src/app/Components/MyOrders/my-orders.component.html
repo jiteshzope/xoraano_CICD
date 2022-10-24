@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="bg-dark text-white p-2 text-center text-lg"><button class="btn btn-dark my-4" routerLink="/home"><fa-icon [icon]="faArrowCircleLeft"></fa-icon> Go back </button>
+
+         <h1>My orders</h1></div>
+    <div class="row">
+
+        <div class="col col-md-12">
+    
+            <ul class="list-group mb-5">
+        
+                <li class="list-group-item border rounded" *ngFor="let order of myOrders" (click)="goToOrderDetails(order)">
+        
+                    <app-order [item]="order"></app-order>
+                    
+                </li>
+        
+            </ul>
+        
+        </div>
+    
+    </div>
+</div>
+

@@ -1,0 +1,119 @@
+<div class="mb-3">
+
+    <button class="btn btn-dark my-4" routerLink="/my-orders"><fa-icon [icon]="faArrowCircleLeft"></fa-icon> Go back </button>
+
+    <div class="text-center">
+        <h3 class="bg-dark text-white p-1 text-center text-md">Delivery details : </h3>
+        <p>{{ order.address }}</p>
+        <p>{{ order.phone }}</p>
+        <p>{{ order.pincode }}</p>
+    </div>
+
+    <div>
+        <h3 class="bg-dark text-white mt-4 p-1 text-center text-md">Bill split : </h3>
+        <div class="d-flex justify-content-around">
+            <p>Sub Total</p>
+            <p>:</p>
+            <p>{{order.subTotal + " Rs"}}</p>
+        </div>
+        <div class="d-flex justify-content-around">
+            <p>Tax</p>
+            <p>:</p>
+            <p>{{order.taxRate + " %"}}</p>
+        </div>
+        <div class="d-flex justify-content-around">
+            <p>Discount amount</p>
+            <p>:</p>
+            <p>{{"-" + order.applied_discount_amount + " Rs"}}</p>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-around">
+            <p>Total</p>
+            <p>:</p>
+            <p>{{ +order.grandTotal - +order.deliveryFee + " Rs" }}</p>
+        </div>
+        <div class="d-flex justify-content-around">
+            <p>Delivery Fee</p>
+            <p>:</p>
+            <p>{{ order.deliveryFee + " Rs" }}</p>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-around">
+            <p>Grand Total</p>
+            <p>:</p>
+            <p>{{ order.grandTotal + " Rs" }}</p>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between">
+
+        <h2>{{ order.payment_method }}</h2>
+
+        <h2>Status : {{ order.status }}</h2>
+    </div>
+
+    <div class="row" *ngIf="order.assignedPerson">
+        <div class="col-sm-3">
+            <img class="delboyimg" [src]="order.assignedPerson.personImage" alt="Displaying soon">
+        </div>
+        <div class="col-sm-6">
+            <h4>Name of delivery boy : </h4>
+            <p>{{ order.assignedPerson ? order.assignedPerson.personName : "Displaying soon..." }}</p>
+            <h4>Mobile Number : </h4>
+            <p>{{ order.assignedPerson ? order.assignedPerson.personMobile : "Displaying soon..." }}</p>
+        </div>
+    </div>
+
+    <div *ngIf="order.status === 'Placed' || order.status==='InProgress' || order.status==='On the way'">
+
+        <h2>Real time order tracking : </h2>
+
+        <agm-map [latitude]="userLocation.latitude" [longitude]="userLocation.longitude" [fitBounds]="true">
+
+            <agm-marker *ngIf="userLocation" [latitude]="userLocation.latitude" [longitude]="userLocation.longitude"
+                [agmFitBounds]="true" iconUrl="../assets/pin_with_me.png">
+            </agm-marker>
+
+            <agm-marker *ngIf="deliveryboylocation && userLocation" [latitude]="deliveryboylocation.latitude"
+                [longitude]="deliveryboylocation.longitude" [agmFitBounds]="true" iconUrl="../assets/pin_with_dboy.png">
+            </agm-marker>
+
+        </agm-map>
+
+    </div>
+
+    <div class="mt-2">
+        <h2>Summary of ordered items :</h2>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class="text-center">Name</th>
+                    <th class="text-center" style="max-width: 230px">Quantity</th>
+                    <th class="text-center" style="max-width: 200px">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of order.orderItems">
+                    <td>
+                        <img [src]="item.image" class="border rounded-circle" style="max-width: 130px" alt="image">
+                    </td>
+                    <td class="text-center">
+                        {{ item.productName }}
+                    </td>
+                    <td class="text-center">
+
+                        {{ item.quantity }}
+
+                    </td>
+                    <td class="text-center">
+                        {{ item.amount | currency:'INR':true }}
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+</div>

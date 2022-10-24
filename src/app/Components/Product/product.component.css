@@ -1,0 +1,48 @@
+.card {
+    width: 10rem;
+    border : none;
+    background-color: thistle;
+    padding: 0.2rem;
+}
+
+.card-img-top{
+    height: 10rem;
+    max-width: 10rem;
+}
+
+.myclass1 .btn{
+    height : 1.5rem;
+    padding: 0rem;
+
+}
+
+
+img {
+    transition: transform .2s; /* Animation */
+    
+}
+  
+img:hover {
+    transform: scale(1.1);
+}
+
+@media only screen and (max-width: 600px) {
+
+    .card {
+        width: 7rem;
+        background-color: thistle;
+        padding: 0rem;
+    }
+
+    .card-img-top{
+        height: 7rem;
+        max-width: 7rem;
+    }
+
+    .pclass{
+        margin-top: 1px;
+        margin-bottom: 2px;
+        font-size: small;
+    }
+
+}

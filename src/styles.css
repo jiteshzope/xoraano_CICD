@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~ngx-toastr/toastr';
+
+.myspinner{
+    position: fixed;
+    top : 50vh;
+    left : 50vw
+}
+
+html, body { height: 100%; }
+body {
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: orange;
+ }
+
+html{
+    scroll-behavior: smooth;
+}
+
+.cdk-overlay-container {z-index: 999999 !important;}
+
+

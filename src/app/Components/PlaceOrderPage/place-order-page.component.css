@@ -1,0 +1,23 @@
+agm-map {
+    height: 350px;
+}
+
+.mybutton:hover{
+    color: lightslategrey;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .mybutton{
+        margin-top: 1rem;
+    }
+
+    .form-inline{
+        display: block;
+    }
+
+    #couponCode{
+        margin-bottom: 1rem;
+    }
+
+}
